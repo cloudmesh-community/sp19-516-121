@@ -4,7 +4,7 @@ Logistics
 * Decided on the chapter that I am going to write down (Scala for cloud computing)
 
 
-# Week 3: 01/17/2019 - 02/25/2019
+# Week 2: 01/17/2019 - 02/25/2019
 Theory
 * The chapter on Data Center
 * Scala programming language foundations
