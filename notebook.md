@@ -27,6 +27,30 @@ Theory
 Practice
 * reviewing python
 
+# Week 4: 02/01/2019 - 02/08/2019
+Theory
+* Rest
+* OpenAPI
+
+
+Practice
+* getting cup information via a rest service in python
+
+# Week 5: 02/08/2019 - 02/15/2019
+Theory
+* Virtualization
+* Infrastructure as a service
+* Azure
+
+
+
+# Week 5: 02/15/2019 - 02/22/2019
+Theory
+* AWS
+* OpenStack
+* libcloud
+* MongoDB
+
 
 
 
