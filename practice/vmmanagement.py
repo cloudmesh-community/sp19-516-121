@@ -30,6 +30,16 @@ nodes = conn.list_nodes()
 for node in nodes:
     pprint.pprint(node)
 
+node = nodes[0]
+
+conn.ex_start(node=node)
+
+conn.ex_stop(node=node)
+
+del conn
+
+
+
 
 
 
