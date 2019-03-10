@@ -1,45 +1,17 @@
-from libcloud.compute.types import Provider
-from libcloud.compute.providers import get_driver
-
 import pprint
 
 from cloudmesh.management.configuration.config import Config
 
-config = Config()
 
-EC2_ACCESS_ID = config['cloudmesh.cloud.aws.credentials.EC2_ACCESS_ID']
-EC2_SECRET_KEY = config['cloudmesh.cloud.aws.credentials.EC2_SECRET_KEY']
+class VMManager:
+    def __init__(self, driver):
+        self.driver = driver
 
-
-EC2Driver = get_driver(Provider.EC2)
-conn = EC2Driver(EC2_ACCESS_ID, EC2_SECRET_KEY)
-
-
-# retrieve available images and sizes
-images = conn.list_images()
-#for image in images:
-#    pprint.pprint(image)
-
-sizes = conn.list_sizes()
-
-# create node with first image and first size
-#node = conn.create_node(name='yourservername', image=images[0], size=sizes[0])
-
-
-nodes = conn.list_nodes()
-for node in nodes:
-    pprint.pprint(node)
-
-node = nodes[0]
-
-conn.ex_start(node=node)
-
-conn.ex_stop(node=node)
-
-del conn
-
-
-
-
-
-
+    def create_node(self, node_name, image_id, size_id, access_key_name, security_group_names):
+        images = self.driver.list_images()
+        sizes = sizes = self.driver.list_sizes()
+        size = [s for s in sizes if s.id == size_id][0]
+        image = [i for i in images if i.id == image_id][0]
+        node = self.driver.create_node(name=node_name, image=image, size=size,
+                                       ex_keyname=access_key_name, ex_securitygroup=security_group_names)
+        return node
