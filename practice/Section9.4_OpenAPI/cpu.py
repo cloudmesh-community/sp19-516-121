@@ -1,6 +1,7 @@
 import os, platform, subprocess, re
 from flask import jsonify
 
+
 def get_processor_name():
     if platform.system() == "Windows":
         p = platform.processor()
