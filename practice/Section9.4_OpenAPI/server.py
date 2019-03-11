@@ -1,5 +1,5 @@
 """
-Main module of the server file
+Main module of the server file - copied from the handbook
 """
 
 from flask import jsonify

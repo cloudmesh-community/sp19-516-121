@@ -22,7 +22,7 @@ paths:
       tags:
         - CPU
       operationId: cpu.get_processor_name
-      description: "Returns cpu information of the hosting server"
+      description: "It Returns cpu information of the hosting server"
       produces:
         - "application/json"
       responses:
