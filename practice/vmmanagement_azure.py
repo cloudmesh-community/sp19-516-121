@@ -30,10 +30,13 @@ time.sleep(10)
 if len(nodes) > 0:
     node = nodes[0]
     if node.state.lower() == 'stopped':
+        print('The node {} is going to be started ...'.format(node.name))
         conn.ex_start_node(node)
     elif node.state.lower() == 'running':
+        print('The node {} is going to be stopped ...'.format(node.name))
         conn.ex_stop_node(node)
 
+time.sleep(10)
 
 nodes = conn.list_nodes()
 for node in nodes:
