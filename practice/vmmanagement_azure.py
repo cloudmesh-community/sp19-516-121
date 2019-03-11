@@ -3,47 +3,45 @@ from libcloud.compute.providers import get_driver
 
 
 import pprint
+import time
 
 from cloudmesh.management.configuration.config import Config
 
 config = Config()
 
-EC2_ACCESS_ID = config['cloudmesh.cloud.aws.credentials.EC2_ACCESS_ID']
-EC2_SECRET_KEY = config['cloudmesh.cloud.aws.credentials.EC2_SECRET_KEY']
-IMAGE_ID = config['cloudmesh.cloud.aws.default.image']
-SIZE_ID = config['cloudmesh.cloud.aws.default.size']
-REGION = config['cloudmesh.cloud.aws.credentials.region']
+
+AZURE_SECRET_KEY = config['cloudmesh.cloud.azure.credentials.AZURE_SECRET_KEY']
+AZURE_TENANT_ID = config['cloudmesh.cloud.azure.credentials.AZURE_TENANT_ID']
+AZURE_SUBSCRIPTION_ID = config['cloudmesh.cloud.azure.credentials.AZURE_SUBSCRIPTION_ID']
+AZURE_APPLICATION_ID = config['cloudmesh.cloud.azure.credentials.AZURE_APPLICATION_ID']
 
 
-EC2Driver = get_driver(Provider.AZURE)
-conn = EC2Driver(EC2_ACCESS_ID, EC2_SECRET_KEY)
+AZUREARMDriver = get_driver(Provider.AZURE_ARM)
+conn = AZUREARMDriver(tenant_id=AZURE_TENANT_ID,
+             subscription_id=AZURE_SUBSCRIPTION_ID,
+             key=AZURE_APPLICATION_ID, secret=AZURE_SECRET_KEY)
 
+nodes = conn.list_nodes()
+for node in nodes:
+    pprint.pprint(node)
 
-# retrieve available images and sizes
-imagesfile = open("aws-images.txt", "w")
-sizesfile = open("aws-sizes.txt", "w")
+time.sleep(10)
 
-images = conn.list_images()
-for image in images:
-   imagesfile.write("\n", repr(image))
-
-sizes = conn.list_sizes()
-for size in sizes:
-  sizesfile.write("\n", repr(size))
-
-imagesfile.close()
-sizesfile.close()
-
-size = [s for s in sizes if s.id == SIZE_ID][0]
-image = [i for i in images if i.id == IMAGE_ID][0]
-
-# create node with first image and first size
-#node = conn.create_node(name='yourservername', image=images[0], size=sizes[0])
+if len(nodes) > 0:
+    node = nodes[0]
+    if node.state.lower() == 'stopped':
+        conn.ex_start_node(node)
+    elif node.state.lower() == 'running':
+        conn.ex_stop_node(node)
 
 
 nodes = conn.list_nodes()
 for node in nodes:
     pprint.pprint(node)
+
+
+
+
 
 
 del conn
