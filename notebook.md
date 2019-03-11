@@ -51,6 +51,17 @@ Theory
 * libcloud
 * MongoDB
 
+# Week 6: 02/22/2019 - 03/01/2019
+Theory
+* SCALA
+
+# Week 6: 03/01/2019 - 03/08/2019
+Practice
+* vm management using libcloud
+* AWS
+* AZURE ARM
+
+
 
 
 
