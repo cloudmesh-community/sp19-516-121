@@ -38,6 +38,7 @@ if len(nodes) > 0:
 
 time.sleep(10)
 
+
 nodes = conn.list_nodes()
 for node in nodes:
     pprint.pprint(node)
