@@ -47,6 +47,38 @@ println("hello world from scala!")
 
 #### how to define a class?
 
+Let's define a class callled person:
+
+```python
+class Person(var firstName : String, var lastName : String){
+
+override def toString : String = s"$firstName $lastName"
+
+}
+
+val fred = new Person("Fred", "Fredian")
+println(fred)
+```
+
+Save the above script in a file named LearnTheLanguage.scala and run
+the code as the following:
+ ```python
+scala LearnTheLanguage.scala 
+```
+
+The class Person has two fields and one method. The primary construcor is 
+in the class signature. Here we override the method toString. The method toString is
+a method in the class AnyRef. The class AnyRef is the supertype of any refrence type. AnyRef is the 
+equivalent of java.lang.Object.
+
+The diagram below (taken from https://docs.scala-lang.org/tour/unified-types.html) shows a subset of 
+the type hierarchy:
+
+![A subset of the type hierarchy](images/unified-types-diagram.svg)
+
+The top class Any has methods like hashCode and toString (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html )
+.
+
 
 ## Cloud computing with AWS Lambda and Scala
 
