@@ -47,6 +47,13 @@ println("hello world from scala!")
 
 #### how to define a class?
 
+
+## Cloud computing with AWS Lambda and Scala
+
+## Cloud computing with Spark and Scala
+
+## Cloud computing with Scala and GridGain
+
  
  
  
