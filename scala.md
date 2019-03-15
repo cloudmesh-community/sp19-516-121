@@ -67,7 +67,12 @@ scala LearnTheLanguage.scala
 ```
 
 The class Person has two fields and one method. The primary construcor is 
-in the class signature. Here we override the method toString. The method toString is
+in the class signature. A class has one primary constructor (this is the constructor that 
+you define in the signature of the class) and any (including none) number of auxiliary constructors.
+An auxiliary constructor is defined using the keyword `this`. All auxiliary constructors must start 
+with a call to a preceding auxiliary constructor or the primary constructor.
+
+In the class `Person` above, we override the method toString. The method toString is
 a method in the class AnyRef. The class AnyRef is the supertype of any refrence type. AnyRef is the 
 equivalent of java.lang.Object.
 
@@ -76,8 +81,34 @@ the type hierarchy:
 
 ![A subset of the type hierarchy](images/unified-types-diagram.svg)
 
-The top class Any has methods like hashCode and toString (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html )
-.
+The top class `Any` has methods like `hashCode` and `toString` (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html ).
+
+Members of a class are `public` by default. You can use the access modifier `private` to limit access 
+to the members. A `private` member can be accessed only within the class. In the example above, the members
+`firstName` and `lastName` are public because they have been defined using `var`. In the primary constructor, any parameter that 
+is defined using either `var` or `val` is public. Otherwise it is `private`. `var` indicates that the 
+thing to be difined is mutable while `val` indicates that the thing to be defined is immutable.  
+
+In Java we have the concept of `intefaces` where an `interface` contains only the signature of some methods.
+`Traits` in Scala are similar to interfaces in Java.
+Traits can not be instantiated but classes and objects (an `object` in Scala, which is defined by the kwyword `object` is just a singleton class) can extend traits.
+
+Subtypying in Scala is simialr to that of Java. Let's modify our code and add the entity `Employee` as a subclass of `Person`:
+
+```python
+class Person(val firstName : String, val lastName : String){
+override def toString : String = s"$firstName $lastName"
+}
+
+class Employee(firstName:String, lastName:String, val employeeId : String) extends Person(firstName, lastName){
+var salary = 0.0
+}
+
+val fred = new Employee("Fred", "Fredian", "410")
+println(fred)
+```
+Note that int the code above the primary constructor of `Employee` is calling the primary constructor of its supertype.
+In Scala, only the primary constructor can call a superclass constructor.
 
 
 ## Cloud computing with AWS Lambda and Scala
