@@ -104,6 +104,11 @@ else firstName == otherPerson.firstName && lastName == otherPerson.lastName
 ```
 But Scala has type inferance capability and can infer the types whereever there are enough information for it to infer types.
 
+In addition to a top class `Any`, Scala has also a bottom class `Nothing`.
+The class `Nothing` is a subtype of any other type. Scala also a `Null` type. The class `Null` 
+has one and only instance called `null`. The class `Null` is a subtype of all reference types and 
+therefore `null` is assignable to any reference type but not to value types. 
+
 Members of a class are `public` by default. You can use the access modifier `private` to limit access 
 to the members. A `private` member can be accessed only within the class. In the example above, the members
 `firstName` and `lastName` are public because they have been defined using `var`. In the primary constructor, any parameter that 
@@ -111,7 +116,8 @@ is defined using either `var` or `val` is public. Otherwise it is `private`. `va
 thing to be difined is mutable while `val` indicates that the thing to be defined is immutable.  
 
 In Java we have the concept of `intefaces` where an `interface` contains only the signature of some methods.
-`Traits` in Scala are similar to interfaces in Java.
+`Traits` in Scala are similar to interfaces in Java. Like Java, in Scala a class can have only one supertype. In case you want to define a class with more than
+one supertype, you can use `trait`s.
 Traits can not be instantiated but classes and objects (an `object` in Scala, which is defined by the kwyword `object` is just a singleton class) can extend traits.
 
 Subtypying in Scala is simialr to that of Java. Let's modify our code and add the entity `Employee` as a subclass of `Person`:
@@ -133,6 +139,59 @@ In Scala, only the primary constructor can call a superclass constructor.
 
 Like Java, you can use the keyword `abstract` to define a class that cannot be instantiated.
 In an abstract class, you can have methods or members that are not defined (that is, you can define a method without defining its body).
+
+### Scala is functional!
+
+To apply a method on a expression, Scala uses dot notation:
+```python
+"hello!".size
+```
+The code above applies the method `size` on the expression "hello!" and
+returns the following:
+```python
+res0: Int = 6
+```
+As another example, consider the method `until` in the class `Int`:
+```python
+def until(end: Int): collection.immutable.Range
+``` 
+This method returns a range from the object that calles the method up to but not included 
+the value of the `end` parameter. Here is how we can apply this method to a number, let's say 7:
+```python
+7.until(15)
+```
+Scala allows the infix syntax and hence you can also use the following syntax to achieve the same outcome:
+```python
+7 until 15
+```
+operators are methods which are usually used with the infix syntax:
+the follwoing to codes are equivalent:
+```python
+4 + 5
+```
+```python
+4.+(5)
+```
+
+Mehods are defined using the keyword `def`:
+```python
+def trapezoidArea (base1 : Double, base2 : Double, height : Double)
+: Double = (base1 + base2)/ 2 * height
+
+```
+The defintion above defines a function with three input parametes of type Double and it returns a double value.
+
+We could use a block to define the body of the method above:
+```python
+def trapezoidArea (base1 : Double, base2 : Double, height : Double)
+: Double = {(base1 + base2)/ 2 * height}
+
+```
+
+A block is defined by braces `{...}`. The last statement of a block determines its value. Anything you define inside 
+a block is accessible only inside the block.
+
+
 
 
 ## Cloud computing with AWS Lambda and Scala
