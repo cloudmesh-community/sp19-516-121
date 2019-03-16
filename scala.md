@@ -81,7 +81,28 @@ the type hierarchy:
 
 ![A subset of the type hierarchy](images/unified-types-diagram.svg)
 
-The top class `Any` has methods like `hashCode` and `toString` (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html ).
+The top class `Any` has methods like `hashCode`, `isInstanceOf`, `asInstanceOf` , `toString` and the methods for 
+equality (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html ). The class `AnyVal` does not add any methods. All value types
+are derived from `AnyVal`. The class `AnyRef` adds some more methods: `wait`, `notify` and `synchronized` and `eq`. The method `eq` checks whether two refrences refer to the 
+same object. If you want to compare two objects of a class by their values, you should override the `equals`. For example for the class `Person` defined 
+above we should override `equals` as follows:
+```python
+final override def equals(other: Any) = {
+val otherPerson = other.asInstanceOf[Person]
+if (otherPerson == null) false
+else firstName == otherPerson.firstName && lastName == otherPerson.lastName
+}
+```
+Note that the method `equals` returns a boolean. In Scala, the type of the last statement in the body a method, is the 
+return type of the method. Here we could make it implicit by declaring the return type as follows:
+```python
+final override def equals(other: Any) : Boolean = {
+val otherPerson = other.asInstanceOf[Person]
+if (otherPerson == null) false
+else firstName == otherPerson.firstName && lastName == otherPerson.lastName
+}
+```
+But Scala has type inferance capability and can infer the types whereever there are enough information for it to infer types.
 
 Members of a class are `public` by default. You can use the access modifier `private` to limit access 
 to the members. A `private` member can be accessed only within the class. In the example above, the members
