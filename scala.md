@@ -110,6 +110,9 @@ println(fred)
 Note that int the code above the primary constructor of `Employee` is calling the primary constructor of its supertype.
 In Scala, only the primary constructor can call a superclass constructor.
 
+Like Java, you can use the keyword `abstract` to define a class that cannot be instantiated.
+In an abstract class, you can have methods or members that are not defined (that is, you can define a method without defining its body).
+
 
 ## Cloud computing with AWS Lambda and Scala
 
