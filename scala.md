@@ -191,9 +191,27 @@ def trapezoidArea (base1 : Double, base2 : Double, height : Double)
 A block is defined by braces `{...}`. The last statement of a block determines its value. Anything you define inside 
 a block is accessible only inside the block.
 
+#### Pattern matching
+ Assume you have two different jobs: selling apples and software programming:
+ ```python
+sealed trait Profession
+case class SellingApples (buy : Double, sell : Double, logistics : Double) extends Profession
+case class Programming (hours : Double, perHourRate : Double, cost : Double) extends Profession
+```
+Now we can use the pattern matching feauture of Scala as the following:
+```python
+def calculateProfit(profession : Profession) : Double = 
+    profession match {
+        case SellingApples (buy, sell, logistics) => sell - (buy + logistics)
+        case Programming (hours, perHourRate, cost) => (hours * perHourRate) - cost
+    }
+```
 
+The match keyword, first checks whether the profession is SellingApples and if it is so, it
+extracts the parameters and then evaluates the expression of the right hand side of the arrow, `=>`.
+If the match is not successful it proceeds to the next case, if any.
 
-
+  
 ## Cloud computing with AWS Lambda and Scala
 
 ## Cloud computing with Spark and Scala
