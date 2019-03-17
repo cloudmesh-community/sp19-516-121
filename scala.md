@@ -42,6 +42,80 @@ Now you can write and execute codes, for example:
 ```bash
 println("hello world from scala!")
 ``` 
+
+### Basics
+To apply a method on a expression, Scala uses dot notation:
+```python
+"hello!".size
+```
+The code above applies the method `size` on the expression "hello!" and
+returns the following:
+```python
+res0: Int = 6
+```
+As another example, consider the method `until` in the class `Int`:
+```python
+def until(end: Int): collection.immutable.Range
+``` 
+This method returns a range from the object that calles the method up to but not included 
+the value of the `end` parameter. Here is how we can apply this method to a number, let's say 7:
+```python
+7.until(15)
+```
+Scala allows the infix syntax and hence you can also use the following syntax to achieve the same outcome:
+```python
+7 until 15
+```
+operators are methods which are usually used with the infix syntax:
+the follwoing to codes are equivalent:
+```python
+4 + 5
+```
+```python
+4.+(5)
+```
+
+Mehods are defined using the keyword `def`:
+```python
+def trapezoidArea (base1 : Double, base2 : Double, height : Double)
+: Double = (base1 + base2)/ 2 * height
+
+```
+The defintion above defines a function with three input parametes of type Double and it returns a double value.
+
+We could use a block to define the body of the method above:
+```python
+def trapezoidArea (base1 : Double, base2 : Double, height : Double)
+: Double = {(base1 + base2)/ 2 * height}
+
+```
+
+A block is defined by braces `{...}`. The last statement of a block determines its value. Anything you define inside 
+a block is accessible only inside the block.
+
+#### Pattern matching
+ Assume you have two different jobs: selling apples and software programming:
+ ```python
+sealed trait Profession
+case class SellingApples (buy : Double, sell : Double, logistics : Double) extends Profession
+case class Programming (hours : Double, perHourRate : Double, cost : Double) extends Profession
+```
+Now we can use the pattern matching feauture of Scala as the following:
+```python
+def calculateProfit(profession : Profession) : Double = 
+    profession match {
+        case SellingApples (buy, sell, logistics) => sell - (buy + logistics)
+        case Programming (hours, perHourRate, cost) => (hours * perHourRate) - cost
+    }
+```
+
+The match keyword, first checks whether the profession is SellingApples and if it is so, it
+extracts the parameters and then evaluates the expression of the right hand side of the arrow, `=>`.
+If the match is not successful it proceeds to the next case, if any.
+
+The example above is an instance of an `algebraic data type`. An algebraic data type is a sealed trait together with several 
+case classes that extend the sealed trait.  Whenever you have an `is-a` relationship between the concepts in the domain, it may be a good idea 
+to model the domain using an algebraic data type.
  
 ### Scala is object oriented!
 
@@ -142,74 +216,8 @@ In an abstract class, you can have methods or members that are not defined (that
 
 ### Scala is functional!
 
-To apply a method on a expression, Scala uses dot notation:
-```python
-"hello!".size
-```
-The code above applies the method `size` on the expression "hello!" and
-returns the following:
-```python
-res0: Int = 6
-```
-As another example, consider the method `until` in the class `Int`:
-```python
-def until(end: Int): collection.immutable.Range
-``` 
-This method returns a range from the object that calles the method up to but not included 
-the value of the `end` parameter. Here is how we can apply this method to a number, let's say 7:
-```python
-7.until(15)
-```
-Scala allows the infix syntax and hence you can also use the following syntax to achieve the same outcome:
-```python
-7 until 15
-```
-operators are methods which are usually used with the infix syntax:
-the follwoing to codes are equivalent:
-```python
-4 + 5
-```
-```python
-4.+(5)
-```
 
-Mehods are defined using the keyword `def`:
-```python
-def trapezoidArea (base1 : Double, base2 : Double, height : Double)
-: Double = (base1 + base2)/ 2 * height
 
-```
-The defintion above defines a function with three input parametes of type Double and it returns a double value.
-
-We could use a block to define the body of the method above:
-```python
-def trapezoidArea (base1 : Double, base2 : Double, height : Double)
-: Double = {(base1 + base2)/ 2 * height}
-
-```
-
-A block is defined by braces `{...}`. The last statement of a block determines its value. Anything you define inside 
-a block is accessible only inside the block.
-
-#### Pattern matching
- Assume you have two different jobs: selling apples and software programming:
- ```python
-sealed trait Profession
-case class SellingApples (buy : Double, sell : Double, logistics : Double) extends Profession
-case class Programming (hours : Double, perHourRate : Double, cost : Double) extends Profession
-```
-Now we can use the pattern matching feauture of Scala as the following:
-```python
-def calculateProfit(profession : Profession) : Double = 
-    profession match {
-        case SellingApples (buy, sell, logistics) => sell - (buy + logistics)
-        case Programming (hours, perHourRate, cost) => (hours * perHourRate) - cost
-    }
-```
-
-The match keyword, first checks whether the profession is SellingApples and if it is so, it
-extracts the parameters and then evaluates the expression of the right hand side of the arrow, `=>`.
-If the match is not successful it proceeds to the next case, if any.
 
   
 ## Cloud computing with AWS Lambda and Scala
