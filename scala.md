@@ -100,7 +100,14 @@ sealed trait Profession
 case class SellingApples (buy : Double, sell : Double, logistics : Double) extends Profession
 case class Programming (hours : Double, perHourRate : Double, cost : Double) extends Profession
 ```
-Now we can use the pattern matching feauture of Scala as the following:
+
+The differences between `class` and `case class` are the followings:
+* In order to instantiate an object of a class we need to use the keyword `new` whereas this is not needed for `case class`es.
+* Two instances, `a` and `b`  of a `class` are not equal, that is a == b will return false. Whereas two instances `a` and 
+`b` of a `case class` when they have the same values for their members are equal, that is `a == b` will return true.
+
+
+Now we can use the pattern matching feature of Scala as the following:
 ```python
 def calculateProfit(profession : Profession) : Double = 
     profession match {
@@ -216,10 +223,32 @@ In an abstract class, you can have methods or members that are not defined (that
 
 ### Scala is functional!
 
+Functions in Scala are first-class values and therfore you can pass them to other methods or a 
+method can return another method as its return value. A function that one of its input or output 
+parameters is itself a function, is called a `higher order function`.
+
+Consider the following example:
+
+```python
+def cost(area : (Double , Double , Double) => Double, 
+x : Double, y : Double, z : Double, costPerUnit : Double) : Double = 
+area(x, y, z) * costPerUnit
+```
+Now we can call this method as the following:
+```python
+cost(trapezoidArea, 2, 3, 4, 10)
+```  
+
+Similarly we could pass an `anonymous function` to  `cost`:
+```python
+cost((x, y, z) => (x + y)/2 * z, 2, 3, 4, 10)
+``` 
+
+For more on Scala language refer to the following resources:
+* [Scala Interactive Excercices](https://www.scala-exercises.org/scala_tutorial/terms_and_types)
+* [Tour of Scala](https://docs.scala-lang.org/tour/tour-of-scala.html)
 
 
-
-  
 ## Cloud computing with AWS Lambda and Scala
 
 ## Cloud computing with Spark and Scala
