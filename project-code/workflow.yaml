@@ -1,0 +1,17 @@
+tasks:
+    task:
+      name: a
+      parameter:
+         x: "int"
+         y:: "int"
+      calculation: f(x,y)
+      entry:
+         color: green
+         label: a
+         value: x (this is a python variable local to the function
+         shape: circle
+      return:
+         color: green
+         label: a
+         value: x (this is a python variable local to the function
+         shape: circle
