@@ -175,6 +175,8 @@ the type hierarchy:
 
 ![A subset of the type hierarchy](images/unified-types-diagram.svg)
 
+:o: images not properly cited, see notation.md in the book on how to do it
+
 The top class `Any` has methods like `hashCode`, `isInstanceOf`, `asInstanceOf` , `toString` and the methods for 
 equality (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html ). The class `AnyVal` does not add any methods. All value types
 are derived from `AnyVal`. The class `AnyRef` adds some more methods: `wait`, `notify` and `synchronized` and `eq`. The method `eq` checks whether two refrences refer to the 
