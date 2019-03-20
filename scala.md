@@ -267,6 +267,14 @@ For more on Scala language refer to the following resources:
 
 ## Cloud computing with Scala and GridGain
 
+[GridGain](https://www.gridgain.com/) a company that provides Grid and Cloud computing
+platforms and services, is using a DSL written in Scala that uses
+GridGain's cloud computing development systems  to create cloud computing 
+platforms. Here is a presentation which includes simple parctical 
+programs using the DSL in Scala:
+
+[Cloud Computing with Scala and GridGain](https://vimeo.com/28761608) 
+
 
  
  
