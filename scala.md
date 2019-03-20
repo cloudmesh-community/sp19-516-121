@@ -243,6 +243,18 @@ Similarly we could pass an `anonymous function` to  `cost`:
 ```python
 cost((x, y, z) => (x + y)/2 * z, 2, 3, 4, 10)
 ``` 
+### Scala as a tool to create  Domain Specific Languages(DSL)
+
+Scala was designed so that it would support creating DSLs ([refer to here for more](https://www.scala-lang.org/old/node/1403))
+. Among the features and capabilities that are in particular helpful for creating DSLs are the followings:
+
+> ...  implicit function definitions, which allow
+values of one type to be lifted to values of a different type, the ability to call
+methods on objects without dots and parentheses, case classes, partial functions,
+call-by-name, user-defined operators composed of symbols, operator overloading,
+as well as other features such as higher-order functions and lambda expressions.
+
+> &mdash;<cite>Artho C., Havelund K., Kumar R., Yamagata Y. (2015) Domain-Specific Languages with Scala. In: Butler M., Conchon S., Zaïdi F. (eds) Formal Methods and Software Engineering. ICFEM 2015. Lecture Notes in Computer Science, vol 9407. Springer, Cham</cite>
 
 For more on Scala language refer to the following resources:
 * [Scala Interactive Excercices](https://www.scala-exercises.org/scala_tutorial/terms_and_types)
@@ -255,6 +267,6 @@ For more on Scala language refer to the following resources:
 
 ## Cloud computing with Scala and GridGain
 
- 
+
  
  
