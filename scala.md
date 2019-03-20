@@ -43,6 +43,8 @@ Now you can write and execute codes, for example:
 println("hello world from scala!")
 ``` 
 
+:o: this only explains repl, but not how to call the interpreter from the terminal
+
 ### Basics
 
 :o: bofore and after a code block must be an empty line
@@ -130,11 +132,11 @@ The example above is an instance of an `algebraic data type`. An algebraic data 
 case classes that extend the sealed trait.  Whenever you have an `is-a` relationship between the concepts in the domain, it may be a good idea 
 to model the domain using an algebraic data type.
  
-### Scala is object oriented!
-
-#### how to define a class?
+### Classes
 
 Let's define a class callled person:
+
+:o: we do not use contractions. We use Let us ....
 
 ```python
 class Person(var firstName : String, var lastName : String){
