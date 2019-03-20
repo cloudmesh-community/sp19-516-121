@@ -102,7 +102,10 @@ a block is accessible only inside the block.
 
 #### Pattern matching
 
+:o: sealed trait Profession not explained 
+
  Assume you have two different jobs: selling apples and software programming:
+ 
  ```python
 sealed trait Profession
 case class SellingApples (buy : Double, sell : Double, logistics : Double) extends Profession
@@ -110,12 +113,14 @@ case class Programming (hours : Double, perHourRate : Double, cost : Double) ext
 ```
 
 The differences between `class` and `case class` are the followings:
+
 * In order to instantiate an object of a class we need to use the keyword `new` whereas this is not needed for `case class`es.
 * Two instances, `a` and `b`  of a `class` are not equal, that is a == b will return false. Whereas two instances `a` and 
 `b` of a `case class` when they have the same values for their members are equal, that is `a == b` will return true.
 
 
 Now we can use the pattern matching feature of Scala as the following:
+
 ```python
 def calculateProfit(profession : Profession) : Double = 
     profession match {
