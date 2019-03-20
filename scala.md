@@ -44,6 +44,11 @@ println("hello world from scala!")
 ``` 
 
 ### Basics
+
+:o: bofore and after a code block must be an empty line
+
+:o: res0 is not explained
+
 To apply a method on a expression, Scala uses dot notation:
 ```python
 "hello!".size
@@ -94,6 +99,7 @@ A block is defined by braces `{...}`. The last statement of a block determines i
 a block is accessible only inside the block.
 
 #### Pattern matching
+
  Assume you have two different jobs: selling apples and software programming:
  ```python
 sealed trait Profession
