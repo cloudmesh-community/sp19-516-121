@@ -1,10 +1,12 @@
 # Scala for Cloud Computing :o: :question:
 
 Scala is a multi-paradigm programming language aiming to integrate the features
- of object oriented paradigm with that of functional programing. Scala is a statically typed 
- language. Scala and Java are interoprable in the sense that libraries written
-  in either language can be used in Scala or Java.
-  
+of object oriented paradigm with that of functional programing. Scala is a statically typed 
+language. Scala and Java are interoprable in the sense that libraries written
+in either language can be used in Scala or Java.
+
+:o: your code snippets have unusual indentation
+
 ## Language
 
 ### Install Scala
