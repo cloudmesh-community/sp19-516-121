@@ -10,6 +10,7 @@ tasks = data["tasks"]
 for task in tasks:
     print(task)
 
+
 def visualize(workflow):
     flows = workflow.split("|")
 
