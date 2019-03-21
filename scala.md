@@ -1,10 +1,12 @@
 # Scala for Cloud Computing :o: :question:
 
 Scala is a multi-paradigm programming language aiming to integrate the features
- of object oriented paradigm with that of functional programing. Scala is a statically typed 
- language. Scala and Java are interoprable in the sense that libraries written
-  in either language can be used in Scala or Java.
-  
+of object oriented paradigm with that of functional programing. Scala is a statically typed 
+language. Scala and Java are interoprable in the sense that libraries written
+in either language can be used in Scala or Java.
+
+:o: some of your code snippets have unusual indentation and formatting
+
 ## Language
 
 ### Install Scala
@@ -43,7 +45,14 @@ Now you can write and execute codes, for example:
 println("hello world from scala!")
 ``` 
 
+:o: this only explains repl, but not how to call the interpreter from the terminal
+
 ### Basics
+
+:o: bofore and after a code block must be an empty line
+
+:o: res0 is not explained
+
 To apply a method on a expression, Scala uses dot notation:
 ```python
 "hello!".size
@@ -94,7 +103,11 @@ A block is defined by braces `{...}`. The last statement of a block determines i
 a block is accessible only inside the block.
 
 #### Pattern matching
+
+:o: sealed trait Profession not explained 
+
  Assume you have two different jobs: selling apples and software programming:
+ 
  ```python
 sealed trait Profession
 case class SellingApples (buy : Double, sell : Double, logistics : Double) extends Profession
@@ -102,12 +115,14 @@ case class Programming (hours : Double, perHourRate : Double, cost : Double) ext
 ```
 
 The differences between `class` and `case class` are the followings:
+
 * In order to instantiate an object of a class we need to use the keyword `new` whereas this is not needed for `case class`es.
 * Two instances, `a` and `b`  of a `class` are not equal, that is a == b will return false. Whereas two instances `a` and 
 `b` of a `case class` when they have the same values for their members are equal, that is `a == b` will return true.
 
 
 Now we can use the pattern matching feature of Scala as the following:
+
 ```python
 def calculateProfit(profession : Profession) : Double = 
     profession match {
@@ -124,11 +139,11 @@ The example above is an instance of an `algebraic data type`. An algebraic data 
 case classes that extend the sealed trait.  Whenever you have an `is-a` relationship between the concepts in the domain, it may be a good idea 
 to model the domain using an algebraic data type.
  
-### Scala is object oriented!
-
-#### how to define a class?
+### Classes
 
 Let's define a class callled person:
+
+:o: we do not use contractions. We use Let us ....
 
 ```python
 class Person(var firstName : String, var lastName : String){
@@ -161,6 +176,8 @@ The diagram below (taken from https://docs.scala-lang.org/tour/unified-types.htm
 the type hierarchy:
 
 ![A subset of the type hierarchy](images/unified-types-diagram.svg)
+
+:o: images not properly cited, see notation.md in the book on how to do it
 
 The top class `Any` has methods like `hashCode`, `isInstanceOf`, `asInstanceOf` , `toString` and the methods for 
 equality (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html ). The class `AnyVal` does not add any methods. All value types
