@@ -5,7 +5,6 @@ owner:
   hid: sp19-516-121
   community: e516
   semester: sp19
-
 chapter:
   - title: Scala for cloud computing
     url: https://github.com/cloudmesh-community/sp19-516-121/blob/master/scala.md
