@@ -8,10 +8,10 @@ tasks:
       entry:
          color: green
          label: a
-         value: x (this is a python variable local to the function
+         value: x
          shape: circle
       return:
          color: green
          label: a
-         value: x (this is a python variable local to the function
+         value: x
          shape: circle
