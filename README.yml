@@ -7,11 +7,10 @@ owner:
   semester: sp19
 
 chapter:
-  title: Scala for cloud computing
-  url: https://github.com/cloudmesh-community/sp19-516-121/blob/master/scala.md
-  github: https://github.com/cloudmesh-community/book/pull/400
-
+  - title: Scala for cloud computing
+    url: https://github.com/cloudmesh-community/sp19-516-121/blob/master/scala.md
+    github: https://github.com/cloudmesh-community/book/pull/400
 project:
-  title: Cloud Workflow
-  github: https://github.com/cloudmesh-community/sp19-516-121/tree/master/project-code 
-  proposal: https://cloudmesh-community.github.io/cm/workflow.html#javascript-interface-proposed
+  - title: Cloud Workflow
+    github: https://github.com/cloudmesh-community/sp19-516-121/tree/master/project-code 
+    proposal: https://cloudmesh-community.github.io/cm/workflow.html#javascript-interface-proposed
