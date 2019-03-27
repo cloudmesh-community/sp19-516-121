@@ -47,6 +47,15 @@ println("hello world from scala!")
 
 :o: this only explains repl, but not how to call the interpreter from the terminal
 
+Now copy the line above into a teext file and name it helloworld.scala. Form the terminal 
+run the following command:
+
+```bash
+scala helloworld.scala
+```
+
+The result of running this command is the same as executing the code in repl.
+
 ### Basics
 
 :o: bofore and after a code block must be an empty line
@@ -58,7 +67,7 @@ To apply a method on a expression, Scala uses dot notation:
 "hello!".size
 ```
 The code above applies the method `size` on the expression "hello!" and
-returns the following:
+returns the following (the output is an instance of Int named 'res0' with a value of 6):
 ```python
 res0: Int = 6
 ```
@@ -86,16 +95,16 @@ the follwoing to codes are equivalent:
 
 Mehods are defined using the keyword `def`:
 ```python
-def trapezoidArea (base1 : Double, base2 : Double, height : Double)
-: Double = (base1 + base2)/ 2 * height
+def trapezoidArea (base1 : Double, base2 : Double, height : Double): Double = 
+(base1 + base2)/ 2 * height
 
 ```
 The defintion above defines a function with three input parametes of type Double and it returns a double value.
 
 We could use a block to define the body of the method above:
 ```python
-def trapezoidArea (base1 : Double, base2 : Double, height : Double)
-: Double = {(base1 + base2)/ 2 * height}
+def trapezoidArea (base1 : Double, base2 : Double, height : Double) : Double = 
+{(base1 + base2)/ 2 * height}
 
 ```
 
