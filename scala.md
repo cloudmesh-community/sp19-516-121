@@ -320,7 +320,7 @@ For more on Scala language refer to the following resources:
 * [Tour of Scala](https://docs.scala-lang.org/tour/tour-of-scala.html)
 
 
-## Cloud computing with AWS Lambda and Scala
+
 
 ## Cloud computing with Spark and Scala
 
