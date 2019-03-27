@@ -63,45 +63,61 @@ The result of running this command is the same as executing the code in repl.
 :o: res0 is not explained
 
 To apply a method on a expression, Scala uses dot notation:
+
 ```python
 "hello!".size
 ```
+
 The code above applies the method `size` on the expression "hello!" and
 returns the following (the output is an instance of Int named 'res0' with a value of 6):
+
 ```python
 res0: Int = 6
 ```
+
 As another example, consider the method `until` in the class `Int`:
+
 ```python
 def until(end: Int): collection.immutable.Range
 ``` 
+
 This method returns a range from the object that calles the method up to but not included 
 the value of the `end` parameter. Here is how we can apply this method to a number, let's say 7:
+
 ```python
 7.until(15)
 ```
+
 Scala allows the infix syntax and hence you can also use the following syntax to achieve the same outcome:
+
 ```python
 7 until 15
 ```
+
 operators are methods which are usually used with the infix syntax:
 the follwoing to codes are equivalent:
+
 ```python
 4 + 5
 ```
+
+
 ```python
 4.+(5)
 ```
 
 Mehods are defined using the keyword `def`:
+
 ```python
 def trapezoidArea (base1 : Double, base2 : Double, height : Double): Double = 
 (base1 + base2)/ 2 * height
 
 ```
+
 The defintion above defines a function with three input parametes of type Double and it returns a double value.
 
 We could use a block to define the body of the method above:
+
 ```python
 def trapezoidArea (base1 : Double, base2 : Double, height : Double) : Double = 
 {(base1 + base2)/ 2 * height}
@@ -114,7 +130,7 @@ a block is accessible only inside the block.
 
 ### Classes
 
-Let's define a class callled person:
+Let us define a class callled person:
 
 :o: we do not use contractions. We use Let us ....
 
@@ -131,6 +147,7 @@ println(fred)
 
 Save the above script in a file named LearnTheLanguage.scala and run
 the code as the following:
+
  ```python
 scala LearnTheLanguage.scala 
 ```
@@ -145,10 +162,10 @@ In the class `Person` above, we override the method toString. The method toStrin
 a method in the class AnyRef. The class AnyRef is the supertype of any refrence type. AnyRef is the 
 equivalent of java.lang.Object.
 
-The diagram below (taken from https://docs.scala-lang.org/tour/unified-types.html) shows a subset of 
-the type hierarchy:
+@fig:scala-type-hierarchy (taken from [@scala-type-hierarchy]) shows a subset of 
+Scala type hierarchy:
 
-![A subset of the type hierarchy](images/unified-types-diagram.svg)
+![A subset of the type hierarchy](images/unified-types-diagram.svg){#fig:scala-type-hierarchy}
 
 :o: images not properly cited, see notation.md in the book on how to do it
 
@@ -157,6 +174,7 @@ equality (more on the class is availabe at https://www.scala-lang.org/api/2.12.1
 are derived from `AnyVal`. The class `AnyRef` adds some more methods: `wait`, `notify` and `synchronized` and `eq`. The method `eq` checks whether two refrences refer to the 
 same object. If you want to compare two objects of a class by their values, you should override the `equals`. For example for the class `Person` defined 
 above we should override `equals` as follows:
+
 ```python
 final override def equals(other: Any) = {
 val otherPerson = other.asInstanceOf[Person]
@@ -164,8 +182,10 @@ if (otherPerson == null) false
 else firstName == otherPerson.firstName && lastName == otherPerson.lastName
 }
 ```
+
 Note that the method `equals` returns a boolean. In Scala, the type of the last statement in the body a method, is the 
 return type of the method. Here we could make it implicit by declaring the return type as follows:
+
 ```python
 final override def equals(other: Any) : Boolean = {
 val otherPerson = other.asInstanceOf[Person]
@@ -173,6 +193,7 @@ if (otherPerson == null) false
 else firstName == otherPerson.firstName && lastName == otherPerson.lastName
 }
 ```
+
 But Scala has type inferance capability and can infer the types whereever there are enough information for it to infer types.
 
 In addition to a top class `Any`, Scala has also a bottom class `Nothing`.
@@ -205,6 +226,7 @@ var salary = 0.0
 val fred = new Employee("Fred", "Fredian", "410")
 println(fred)
 ```
+
 Note that int the code above the primary constructor of `Employee` is calling the primary constructor of its supertype.
 In Scala, only the primary constructor can call a superclass constructor.
 
@@ -268,19 +290,23 @@ def cost(area : (Double , Double , Double) => Double,
 x : Double, y : Double, z : Double, costPerUnit : Double) : Double = 
 area(x, y, z) * costPerUnit
 ```
+
 Now we can call this method as the following:
+
 ```python
 cost(trapezoidArea, 2, 3, 4, 10)
 ```  
 
 Similarly we could pass an `anonymous function` to  `cost`:
+
 ```python
 cost((x, y, z) => (x + y)/2 * z, 2, 3, 4, 10)
 ``` 
+
 ### Scala as a tool to create  Domain Specific Languages(DSL)
 
 Scala was designed so that it would support creating DSLs ([refer to here for more](https://www.scala-lang.org/old/node/1403))
-. Among the features and capabilities that are in particular helpful for creating DSLs are the followings:
+. Among the features and capabilities that are in particular helpful for creating DSLs are the followings[@artho2015domain]:
 
 > ...  implicit function definitions, which allow
 values of one type to be lifted to values of a different type, the ability to call
@@ -288,7 +314,6 @@ methods on objects without dots and parentheses, case classes, partial functions
 call-by-name, user-defined operators composed of symbols, operator overloading,
 as well as other features such as higher-order functions and lambda expressions.
 
-> &mdash;<cite>Artho C., Havelund K., Kumar R., Yamagata Y. (2015) Domain-Specific Languages with Scala. In: Butler M., Conchon S., Zaïdi F. (eds) Formal Methods and Software Engineering. ICFEM 2015. Lecture Notes in Computer Science, vol 9407. Springer, Cham</cite>
 
 For more on Scala language refer to the following resources:
 * [Scala Interactive Excercices](https://www.scala-exercises.org/scala_tutorial/terms_and_types)
