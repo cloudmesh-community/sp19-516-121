@@ -9,10 +9,12 @@ chapter:
   - title: Scala for cloud computing
     url: https://github.com/cloudmesh-community/sp19-516-121/blob/master/scala.md
     github: https://github.com/cloudmesh-community/book/pull/419
+    bib: https://github.com/cloudmesh-community/book/pull/420
 sections:
   - title: Scala for cloud computing
     url: https://github.com/cloudmesh-community/sp19-516-121/blob/master/scala.md
     github: https://github.com/cloudmesh-community/book/pull/419
+    bib: https://github.com/cloudmesh-community/book/pull/420
 project:
   - title: Cloud Workflow
     github: https://github.com/cloudmesh-community/sp19-516-121/tree/master/project-code 
