@@ -127,6 +127,10 @@ def trapezoidArea (base1 : Double, base2 : Double, height : Double) : Double =
 A block is defined by braces `{...}`. The last statement of a block determines its value. Anything you define inside 
 a block is accessible only inside the block.
 
+For more on the basic features of Scala language refer to the following resources:
+* [Scala Interactive Excercices](https://www.scala-exercises.org/scala_tutorial/terms_and_types)
+* [Tour of Scala](https://docs.scala-lang.org/tour/tour-of-scala.html)
+
 
 ### Classes
 
@@ -318,9 +322,17 @@ call-by-name, user-defined operators composed of symbols, operator overloading,
 as well as other features such as higher-order functions and lambda expressions.
 
 
-For more on Scala language refer to the following resources:
-* [Scala Interactive Excercices](https://www.scala-exercises.org/scala_tutorial/terms_and_types)
-* [Tour of Scala](https://docs.scala-lang.org/tour/tour-of-scala.html)
+#### Cloud computing with Scala and GridGain
+
+[GridGain](https://www.gridgain.com/) a company that provides Grid and Cloud computing
+platforms and services, is using a DSL written in Scala that uses
+GridGain's cloud computing development systems  to create cloud computing 
+platforms. Here is a presentation which includes simple parctical 
+programs using the DSL in Scala:
+
+[Cloud Computing with Scala and GridGain](https://vimeo.com/28761608) 
+
+
 
 ## Parallel programming in Scala
 
@@ -453,17 +465,6 @@ This class overrides the `receive` method of the `Actor` trait to handle the mes
 Note that the internal state of an actor can be changed only through messages. Now an actor processes messages one at a time, so there will be no races regarding the internal stataes of the actors and therefore 
 there is no need to have locks or monitors. Also senders are not locked and as soon as they sent a message they can continue doing other things. 
 
-## Cloud computing with Spark and Scala
-
-## Cloud computing with Scala and GridGain
-
-[GridGain](https://www.gridgain.com/) a company that provides Grid and Cloud computing
-platforms and services, is using a DSL written in Scala that uses
-GridGain's cloud computing development systems  to create cloud computing 
-platforms. Here is a presentation which includes simple parctical 
-programs using the DSL in Scala:
-
-[Cloud Computing with Scala and GridGain](https://vimeo.com/28761608) 
 
 
  
