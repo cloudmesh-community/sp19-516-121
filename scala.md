@@ -194,7 +194,7 @@ else firstName == otherPerson.firstName && lastName == otherPerson.lastName
 }
 ```
 
-But Scala has type inferance capability and can infer the types whereever there are enough information for it to infer types.
+But Scala has type inference capability and can infer the types whereever there are enough information for it to infer types.
 
 In addition to a top class `Any`, Scala has also a bottom class `Nothing`.
 The class `Nothing` is a subtype of any other type. Scala also a `Null` type. The class `Null` 
@@ -208,7 +208,7 @@ is defined using either `var` or `val` is public. Otherwise it is `private`. `va
 thing to be difined is mutable while `val` indicates that the thing to be defined is immutable.  
 
 In Java we have the concept of `intefaces` where an `interface` contains only the signature of some methods.
-`Traits` in Scala are similar to interfaces in Java. Like Java, in Scala a class can have only one supertype. In case you want to define a class with more than
+`Traits` in Scala are similar to interfaces in Java. However unlike intefaces in Java, a trait can contain attributes and code. Like Java, in Scala a class can have only one supertype. In case you want to define a class with more than
 one supertype, you can use `trait`s.
 Traits can not be instantiated but classes and objects (an `object` in Scala, which is defined by the kwyword `object` is just a singleton class) can extend traits.
 
@@ -237,6 +237,9 @@ In an abstract class, you can have methods or members that are not defined (that
 
 :o: sealed trait Profession not explained 
 
+ Pattern matching means that for a given data we have a sequence of patterns against which we 
+ we match the data.  Java `switch` statements are examples of pattern matching. 
+ 
  Assume you have two different jobs: selling apples and software programming:
  
  ```python
@@ -319,7 +322,128 @@ For more on Scala language refer to the following resources:
 * [Scala Interactive Excercices](https://www.scala-exercises.org/scala_tutorial/terms_and_types)
 * [Tour of Scala](https://docs.scala-lang.org/tour/tour-of-scala.html)
 
+## Parallel programming in Scala
 
+### Parallel collections
+
+Let us start with a simple example on how to run a simple operation in parallel. In this example we want to transform 
+a list of strings to all-lowercase. Here is the sequential version of the code:
+
+```python
+scala> val x = List("Scala", "SPARK", "PAR", "ParelleL")
+scala> x.map(_.toLowerCase)
+```
+
+The method map, applies the function that it receives as its argument to each member of the list.
+
+Scala has a parallel counterpart to a number of its important sequential collections. For example `ParArray`,
+`mutable.ParHashMap` and `immutable.ParHashMap`. Scala has a speical method `par` that when you call this method on a 
+sequential collection, it will copy all the elements in that collection to an equivalent parallel collection. So to run the above example in parallel we only need to 
+apply the function `par` as the following:
+
+```python
+scala> val x = List("Scala", "SPARK", "PAR", "ParelleL").par
+scala> x.map(_.toLowerCase)
+```
+
+### Actor model
+
+To do concurrent and parallel programming in Java, we usually use threads. Creating threads and 
+managing their intercommunication is complex as you need to handle how they use shared resources, and how they 
+communicate to each other. Especially you often need to use locks and monitors to prevent deadlocks. Another paradigm in 
+concurrent programming is the `actor model`. In this model we have actors instead of threads. An actor is simply an object that can send and receive messages to other 
+actors. Therefore it is an event-based mechanism. 
+
+Scala had an [Actors](https://docs.scala-lang.org/overviews/core/actors.html) library but starting from 
+Scala 2.11.0 that library is deprecated in favor of [Akka](https://akka.io). Akka is a toolkit written in Scala for devloping concurrent event-driven 
+applications. 
+
+Let us develope a simple concurrent program using Akka. We develope this program using [sbt](https://www.scala-sbt.org/index.html) build tool. We also use IntelliJ Community Edition as our IDE.
+To install IntelliJ Community Edition and its Scala plugin please follow [this tutorial](https://docs.scala-lang.org/getting-started-intellij-track/getting-started-with-scala-in-intellij.html). When you have the IDE and the Scala plugin installed then 
+follow the istructions in [the second turotial](https://docs.scala-lang.org/getting-started-intellij-track/building-a-scala-project-with-intellij-and-sbt.html) to build a sample project (call it scala_example) using the IDE and sbt build tool.
+
+Now in your scala_example project replace the content of the file `build.sbt` with the following:
+
+```python
+name := "scala_example"
+
+version := "0.1"
+
+scalaVersion := "2.12.8"
+
+libraryDependencies ++= Seq(
+  "com.typesafe.akka" %% "akka-actor" % "2.5.21",
+  "com.typesafe.akka" %% "akka-testkit" % "2.5.21" % Test
+)
+``` 
+
+This file tells the sbt build tool that it needs to download the Akka related libraries for this project.
+
+Next replace the content of the file `Main.scala` with the follwoing:
+
+```python
+
+package scala_example
+
+import akka.actor.{Actor, ActorRef, ActorSystem, Props}
+
+object Person {
+  def props(name: String): Props = Props(new Person(name))
+
+  case class MoneySent(amount: Double)
+
+  case class MoneyRequested(amount: Double)
+
+}
+
+class Person(name: String) extends Actor {
+
+  import Person._
+
+  def receive = {
+
+    case MoneySent(amount) => {
+      println(name + " sent $" + amount)
+
+    }
+    case MoneyRequested(amount) => {
+      println(name + " requested $" + amount)
+
+    }
+  }
+}
+
+object Main extends App {
+
+  import Person._
+
+  val system: ActorSystem = ActorSystem("helloAkka")
+  val fred: ActorRef = system.actorOf(Person.props("fred"))
+  val andi = system.actorOf(Person.props("andi"))
+  fred ! new MoneyRequested(100)
+  andi ! new MoneySent(100)
+
+}
+```
+
+Now run the program using the run command of sbt. The output of the program will be 
+either of the followings:
+
+this:
+
+```python
+[info] Running scala_example.Main 
+andi sent $100.0
+fred requested $100.0
+```
+
+or this:
+
+```python
+[info] Running scala_example.Main 
+fred requested $100.0
+andi sent $100.0
+```
 
 
 ## Cloud computing with Spark and Scala
