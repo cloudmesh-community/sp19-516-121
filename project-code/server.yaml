@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: "graphvisualization"
+  description: ""
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    name: "Visualize Workflows REST Service"
+  license:
+    name: "Apache"
+host: "localhost:8080"
+basePath: "/workflow"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+paths:
+  /cpu:
+    get:
+      tags:
+        - CPU
+      operationId: cpu.get_processor_name
+      description: "It Returns cpu information of the hosting server"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "CPU info"
+          schema:
+            $ref: "#/definitions/CPU"
+definitions:
+  CPU:
+    type: "object"
+    required:
+      - "model"
+    properties:
+      model:
+        type: "string"
