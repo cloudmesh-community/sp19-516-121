@@ -1,11 +1,10 @@
-# Scala for Cloud Computing :o: :question:
+# Scala for Cloud Computing
 
 Scala is a multi-paradigm programming language aiming to integrate the features
 of object oriented paradigm with that of functional programing. Scala is a statically typed 
 language. Scala and Java are interoprable in the sense that libraries written
 in either language can be used in Scala or Java.
 
-:o: some of your code snippets have unusual indentation and formatting
 
 ## Language
 
@@ -45,8 +44,6 @@ Now you can write and execute codes, for example:
 println("hello world from scala!")
 ``` 
 
-:o: this only explains repl, but not how to call the interpreter from the terminal
-
 Now copy the line above into a teext file and name it helloworld.scala. Form the terminal 
 run the following command:
 
@@ -58,9 +55,7 @@ The result of running this command is the same as executing the code in repl.
 
 ### Basics
 
-:o: bofore and after a code block must be an empty line
 
-:o: res0 is not explained
 
 To apply a method on a expression, Scala uses dot notation:
 
@@ -136,7 +131,7 @@ For more on the basic features of Scala language refer to the following resource
 
 Let us define a class callled person:
 
-:o: we do not use contractions. We use Let us ....
+
 
 ```python
 class Person(var firstName : String, var lastName : String){
@@ -171,7 +166,7 @@ Scala type hierarchy:
 
 ![A subset of the type hierarchy](images/unified-types-diagram.svg){#fig:scala-type-hierarchy}
 
-:o: images not properly cited, see notation.md in the book on how to do it
+
 
 The top class `Any` has methods like `hashCode`, `isInstanceOf`, `asInstanceOf` , `toString` and the methods for 
 equality (more on the class is availabe at https://www.scala-lang.org/api/2.12.1/scala/Any.html ). The class `AnyVal` does not add any methods. All value types
@@ -239,7 +234,7 @@ In an abstract class, you can have methods or members that are not defined (that
 
 #### Pattern matching
 
-:o: sealed trait Profession not explained 
+
 
  Pattern matching means that for a given data we have a sequence of patterns against which we 
  we match the data.  Java `switch` statements are examples of pattern matching. 
