@@ -445,6 +445,13 @@ fred requested $100.0
 andi sent $100.0
 ```
 
+In the example we defined a class named `Person` which extends the tarit `Actor`. 
+This class overrides the `receive` method of the `Actor` trait to handle the messages that it receives. What happens when an actor receives a message, is the following:
+* The actor maintains a queue for the messages that it receives. So when the actor receives a message, it adds the message to its queue.
+* The actor executes the message that is in front of its queue.
+
+Note that the internal state of an actor can be changed only through messages. Now an actor processes messages one at a time, so there will be no races regarding the internal stataes of the actors and therefore 
+there is no need to have locks or monitors. Also senders are not locked and as soon as they sent a message they can continue doing other things. 
 
 ## Cloud computing with Spark and Scala
 
