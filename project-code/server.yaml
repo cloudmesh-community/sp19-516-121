@@ -9,32 +9,51 @@ info:
   license:
     name: "Apache"
 host: "localhost:8080"
-basePath: "/workflow"
+basePath: "/flow"
 schemes:
   - "http"
 consumes:
   - "application/json"
 produces:
-  - "application/json"
+  - "text/html"
 paths:
-  /cpu:
+  /monitor:
     get:
       tags:
-        - CPU
-      operationId: cpu.get_processor_name
-      description: "It Returns cpu information of the hosting server"
+        - monitor
+      operationId: render.check
+      description: "It returns a sample graph."
       produces:
-        - "application/json"
+        - "text/html"
       responses:
-        "200":
-          description: "CPU info"
+        201:
+          description: A sample workflow
+
+
+    post:
+      operationId: render.monitor
+      tags:
+        - monitor
+      summary: Monitor a workflow depicted as a graph
+      description: Monitor a workflow depicted as a graph
+      parameters:
+        - name: workflow
+          in: body
+          description: Workflow to visualize
+          required: True
           schema:
-            $ref: "#/definitions/CPU"
+            $ref: "#/definitions/workflow"
+      responses:
+        201:
+          description: Successfully created a digram for the workflow
 definitions:
-  CPU:
+  workflow:
     type: "object"
     required:
-      - "model"
+      - "flow"
+      - "tasks"
     properties:
-      model:
+      flow:
+        type: "string"
+      tasks:
         type: "string"

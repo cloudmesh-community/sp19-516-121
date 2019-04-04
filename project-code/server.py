@@ -6,10 +6,8 @@ import connexion
 app = connexion.App(__name__, specification_dir="./")
 
 
-class Visualize(Resource):
-    def graph(self, workflow):
-        return "hello!", 200
-
+# Read the yaml file to configure the endpoints
+app.add_api("server.yaml")
 
 # create a URL route in our application for "/"
 @app.route("/")
@@ -71,6 +69,6 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8090, debug=True)
+    app.run(host="127.0.0.1", port=8080, debug=True)
 
 
