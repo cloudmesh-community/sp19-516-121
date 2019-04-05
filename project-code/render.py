@@ -21,16 +21,16 @@ def get_template():
     <div id="mynetwork"></div>
 
     <script type="text/javascript">
+    
+       
         // create an array with nodes
+         
         var nodes = new vis.DataSet([
-            {id: 1, label: 'Node 1'},
-            {id: 2, label: 'Node 2'},
-            {id: 3, label: 'Node 3'},
-            {id: 4, label: 'Node 4'},
-            {id: 5, label: 'Node 5'}
+            {{nodes}}
         ]);
 
         // create an array with edges
+        {{ edges }}
         var edges = new vis.DataSet([
             {from: 1, to: 3},
             {from: 1, to: 2},
@@ -58,7 +58,14 @@ def get_template():
 
 def check():
     content = get_template()
-    return render_template_string(content)
+    nodes= [{'id': 1, 'label': 'Node1'},
+            {'id': 2, 'label': 'Node2'},
+            {'id': 3, 'label': 'Node3'},
+            {'id': 4, 'label': 'Node4'},
+            {'id': 5, 'label': 'Node5'}]
+
+
+    return render_template("home.html", nodes=nodes)
 
 
 def monitor(workflow):
