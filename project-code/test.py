@@ -1,9 +1,10 @@
 import js2py
 
+
 import oyaml as yaml
 import requests
 from flask import jsonify
-
+import json
 
 
 with open("workflow.yaml", "r") as stream:
@@ -13,8 +14,35 @@ tasks = data["tasks"]
 for task in tasks:
     print(task)
 
-url = "http://127.0.0.1:8090/"
-response = requests.get(url + "visualize/graph/" + jsonify(tasks))
+nodes = []
+edges = []
+
+for task in tasks:
+    nodes.append({'id': task, 'label': task})
+
+nodes.append({'id':'start', 'lable':'start'})
+nodes.append({'id':'end', 'lable':'end'})
+
+flows = data["flow"].split("|")
+for flow in flows:
+    arrows = flow.split(";")
+
+    for i in range(0, len(arrows) - 1):
+        edges.append({'from':arrows[i], 'to': arrows[i+1], "arrows":'to'})
+
+
+url = "http://127.0.0.1:8080/flow/monitor"
+response = requests.get(url)
+
+flow = json.dumps(data)
+
+flowyaml = {"flowyaml" : flow}
+
+workflow = json.dumps(flowyaml)
+
+response = requests.post(url, json=flowyaml)
+
+print(response.content)
 
 def visualize(workflow):
     flows = workflow.split("|")

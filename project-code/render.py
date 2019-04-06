@@ -1,73 +1,40 @@
 from flask import Flask, jsonify, render_template, render_template_string
 from flask import jsonify
+import oyaml as yaml
 
 
-def get_template():
-    content = '''
-                 <html>
-    <head>
-        <script type="text/javascript" src="{{ url_for('static', filename="js/vis.js")}}"></script>
-        <link href="{{ url_for('static', filename="css/vis.css")}}" rel="stylesheet" type="text/css" />
 
-        <style type="text/css">
-            #mynetwork {
-                width: 600px;
-                height: 400px;
-                border: 1px solid lightgray;
-            }
-        </style>
-    </head>
-    <body>
-    <div id="mynetwork"></div>
+def show():
 
-    <script type="text/javascript">
-    
-       
-        // create an array with nodes
-         
-        var nodes = new vis.DataSet([
-            {{nodes}}
-        ]);
+    with open("workflow.yaml", "r") as stream:
+        data = yaml.load(stream)
 
-        // create an array with edges
-        {{ edges }}
-        var edges = new vis.DataSet([
-            {from: 1, to: 3},
-            {from: 1, to: 2},
-            {from: 2, to: 4},
-            {from: 2, to: 5}
-        ]);
+    tasks = data["tasks"]
+    for task in tasks:
+        print(task)
 
-        // create a network
-        var container = document.getElementById('mynetwork');
+    nodes = []
+    edges = []
 
-        // provide the data in the vis format
-        var data = {
-            nodes: nodes,
-            edges: edges
-        };
-        var options = {};
+    for task in tasks:
+        nodes.append({'id': task, 'label': task})
 
-        // initialize your network!
-        var network = new vis.Network(container, data, options);
-    </script>
-    </body>
-    </html> 
-                  '''
-    return content;
+    nodes.append({'id': 'start', 'label': 'start'})
+    nodes.append({'id': 'end', 'label': 'end'})
 
-def check():
-    content = get_template()
-    nodes= [{'id': 1, 'label': 'Node1'},
-            {'id': 2, 'label': 'Node2'},
-            {'id': 3, 'label': 'Node3'},
-            {'id': 4, 'label': 'Node4'},
-            {'id': 5, 'label': 'Node5'}]
+    flows = data["flow"].split("|")
+    for flow in flows:
+        arrows = flow.split(";")
+
+        for i in range(0, len(arrows) - 1):
+            edges.append({'from': arrows[i], 'to': arrows[i + 1], "arrows": 'to'})
+
+    return render_template("home.html", nodes=nodes, edges=edges)
 
 
-    return render_template("home.html", nodes=nodes)
-
-
-def monitor(workflow):
-    flow = workflow.get("flow", None)
-    tasks = workflow.get("tasks", None)
+def update(workflow):
+    flow = workflow.get("flowyaml", None)
+    data = yaml.load(flow)
+    with open('workflow.yaml', 'w') as outfile:
+        yaml.dump(data, outfile, default_flow_style=False)
+    show()

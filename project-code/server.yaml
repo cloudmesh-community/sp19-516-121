@@ -21,7 +21,7 @@ paths:
     get:
       tags:
         - monitor
-      operationId: render.check
+      operationId: render.show
       description: "It returns a sample graph."
       produces:
         - "text/html"
@@ -31,7 +31,7 @@ paths:
 
 
     post:
-      operationId: render.monitor
+      operationId: render.update
       tags:
         - monitor
       summary: Monitor a workflow depicted as a graph
@@ -40,7 +40,7 @@ paths:
         - name: workflow
           in: body
           description: Workflow to visualize
-          required: True
+          required: False
           schema:
             $ref: "#/definitions/workflow"
       responses:
@@ -50,10 +50,8 @@ definitions:
   workflow:
     type: "object"
     required:
-      - "flow"
-      - "tasks"
+      - "flowyaml"
+
     properties:
-      flow:
-        type: "string"
-      tasks:
+      flowyaml:
         type: "string"

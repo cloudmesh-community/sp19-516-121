@@ -1,33 +1,47 @@
+flow: start;a;c;end|start;b;c
 tasks:
-    a:
-
-      parameter:
-         x: "int"
-         y:: "int"
-      calculation: f(x,y)
-      entry:
-         color: green
-         label: a
-         value: x
-         shape: circle
-      return:
-         color: green
-         label: a
-         value: x
-         shape: circle
-    b:
-
-      parameter:
-        x: "int"
-        y:: "int"
-      calculation: g(x,y)
-      entry:
-        color: green
-        label: b
-        value: x
-        shape: circle
-      return:
-        color: green
-        label: b
-        value: x
-        shape: circle
+  a:
+    parameter:
+      x: int
+      y: int
+    calculation: f(x,y)
+    entry:
+      color: green
+      label: a
+      value: x
+      shape: circle
+    return:
+      color: green
+      label: a
+      value: x
+      shape: circle
+  b:
+    parameter:
+      x: int
+      y: int
+    calculation: g(x,y)
+    entry:
+      color: green
+      label: b
+      value: x
+      shape: circle
+    return:
+      color: green
+      label: b
+      value: x
+      shape: circle
+  c:
+    parameter:
+      x: int
+      y: int
+    calculation: i(x,y)
+    entry:
+      color: green
+      label: b
+      value: x
+      shape: circle
+    return:
+      color: green
+      label: b
+      value: x
+      shape: circle
