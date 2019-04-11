@@ -39,7 +39,7 @@ paths:
       tags:
         - monitor
       operationId: render.show
-      description: "It returns a sample graph."
+      description: "It returns graph for the given workflow name."
       parameters:
         - name: workflowname
           in: path
