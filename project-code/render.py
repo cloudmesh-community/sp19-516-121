@@ -45,8 +45,11 @@ def update(workflow):
 def getworkflownames():
     workflows = []
     for (dirpath, dirnames, filenames) in walk("workflows"):
-        workflows.extend(filenames)
-        break
-    return workflows
+        for filename in filenames:
+            if filename.endswith(".yaml"):
+                flow = {"name" : filename[:-5]}
+                workflows.append(flow)
+
+    return jsonify(workflows)
 
 

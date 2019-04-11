@@ -5,6 +5,15 @@ import oyaml as yaml
 import requests
 from flask import jsonify
 import json
+import os
+
+workflows = []
+for (dirpath, dirnames, filenames) in os.walk("workflows"):
+    for filename in filenames:
+        if filename.endswith(".yaml"):
+            flow = {"name": filename}
+            workflows.append(flow)
+
 
 
 with open("sampleflow1.yaml", "r") as stream:

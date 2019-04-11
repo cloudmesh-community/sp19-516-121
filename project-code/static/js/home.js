@@ -17,7 +17,7 @@ ns.model = (function() {
         'read': function() {
             let ajax_options = {
                 type: 'GET',
-                url: 'flow/list',
+                url: 'list',
                 accepts: 'application/json',
                 dataType: 'json'
             };
@@ -29,6 +29,7 @@ ns.model = (function() {
                 $event_pump.trigger('model_error', [xhr, textStatus, errorThrown]);
             })
         }
+     };
 
 
 }());
@@ -59,7 +60,7 @@ ns.view = (function() {
             // did we get a people array?
             if (people) {
                 for (let i=0, l=people.length; i < l; i++) {
-                    rows += `<tr><td class="fname">${people[i]}</td></tr>`;
+                    rows += `<tr><td class="fname"><a href="/flow/monitor/${people[i].name}">${people[i].name}</a></td></tr>`;
                 }
                 $('table > tbody').append(rows);
             }
