@@ -47,6 +47,6 @@ def getworkflownames():
     for (dirpath, dirnames, filenames) in walk("workflows"):
         workflows.extend(filenames)
         break
-    return jsonify(workflows)
+    return workflows
 
 
