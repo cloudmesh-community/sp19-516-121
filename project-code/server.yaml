@@ -18,18 +18,6 @@ produces:
   - "text/html"
 paths:
   /monitor:
-    get:
-      tags:
-        - monitor
-      operationId: render.show
-      description: "It returns a sample graph."
-      produces:
-        - "text/html"
-      responses:
-        201:
-          description: A sample workflow
-
-
     post:
       operationId: render.update
       tags:
@@ -46,6 +34,41 @@ paths:
       responses:
         201:
           description: Successfully created a digram for the workflow
+  /monitor/{workflowname}:
+    get:
+      tags:
+        - monitor
+      operationId: render.show
+      description: "It returns a sample graph."
+      parameters:
+        - name: workflowname
+          in: path
+          description: The workflow name to be shown
+          type: string
+          required: True
+      produces:
+        - "text/html"
+      responses:
+        201:
+          description: The workflow visualized
+  /list:
+    get:
+      operationId: render.getworkflownames
+      tags:
+        - monitor
+      summary: Read the entire list of workflows
+      description: Read the list of workflows
+      responses:
+        200:
+          description: Successfully read the list of workflows
+          schema:
+            type: array
+            items:
+              properties:
+                name:
+                  type: string
+
+
 definitions:
   workflow:
     type: "object"

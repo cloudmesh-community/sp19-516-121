@@ -1,12 +1,13 @@
 from flask import Flask, jsonify, render_template, render_template_string
 from flask import jsonify
 import oyaml as yaml
+from os import walk
 
 
 
-def show():
-
-    with open("workflow.yaml", "r") as stream:
+def show(workflowname):
+    filename = "workflows/" + workflowname + ".yaml"
+    with open(filename, "r") as stream:
         data = yaml.load(stream)
 
     tasks = data["tasks"]
@@ -29,12 +30,23 @@ def show():
         for i in range(0, len(arrows) - 1):
             edges.append({'from': arrows[i], 'to': arrows[i + 1], "arrows": 'to'})
 
-    return render_template("home.html", nodes=nodes, edges=edges)
+    return render_template("workflow.html", nodes=nodes, edges=edges)
 
 
 def update(workflow):
     flow = workflow.get("flowyaml", None)
+    workflowname = workflow.get("name", None)
+    filename = "workflows/" + workflowname + ".yaml"
     data = yaml.load(flow)
-    with open('workflow.yaml', 'w') as outfile:
+    with open(filename, 'w') as outfile:
         yaml.dump(data, outfile, default_flow_style=False)
-    show()
+    show(workflowname)
+
+def getworkflownames():
+    workflows = []
+    for (dirpath, dirnames, filenames) in walk("workflows"):
+        workflows.extend(filenames)
+        break
+    return jsonify(workflows)
+
+
