@@ -7,7 +7,7 @@ from flask import jsonify
 import json
 
 
-with open("workflow.yaml", "r") as stream:
+with open("sampleflow1.yaml", "r") as stream:
     data = yaml.load(stream)
 
 tasks = data["tasks"]
