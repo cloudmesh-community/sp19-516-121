@@ -11,7 +11,7 @@ app = connexion.App(__name__, specification_dir="./")
 app.add_api("server.yaml")
 
 # create a URL route in our application for "/"
-@app.route("/")
+@app.route("/flow/")
 def home():
 
 

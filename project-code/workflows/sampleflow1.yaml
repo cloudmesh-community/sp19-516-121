@@ -1,3 +1,4 @@
+name: sampleflow1
 flow: start;a;c;end|start;b;c
 tasks:
   a:
