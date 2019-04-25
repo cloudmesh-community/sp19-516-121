@@ -16,8 +16,8 @@ sections:
     github: https://github.com/cloudmesh-community/book/pull/419
     bib: https://github.com/cloudmesh-community/book/pull/420
 project:
-  - title: Cloud Workflow
-    github: https://github.com/cloudmesh-community/sp19-516-121/tree/master/project-code 
-    proposal: https://cloudmesh-community.github.io/cm/workflow.html#javascript-interface-proposed
+  - title: Workflow
+    url: https://github.com/cloudmesh/cloudmesh-flow/README.md
+    code: https://github.com/cloudmesh/cloudmesh-flow/flow/visualize
     pytest:
-      - TBD
+      - https://github.com/cloudmesh/cloudmesh-flow/tests
