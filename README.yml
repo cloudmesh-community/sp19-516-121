@@ -18,7 +18,7 @@ sections:
 project:
   - title: Workflow
     url: https://github.com/cloudmesh/cloudmesh-flow/README.md
-    code: https://github.com/cloudmesh/cloudmesh-flow/flow/visualize
+    code: https://github.com/cloudmesh/cloudmesh-flow/tree/master/cloudmesh/flow/visualize
     status: 95%
     pytest:
       - https://github.com/cloudmesh/cloudmesh-flow/tests
